@@ -25,7 +25,7 @@ public class Strain {
             float m = middle - reading.middle;
             float r = ring - reading.ring;
 
-            return Math.sqrt(p * p + t * t + pt * pt + m * m + r * r);
+            return (float) Math.sqrt(p * p + t * t + pt * pt + m * m + r * r);
         }
     }
 
@@ -46,7 +46,7 @@ public class Strain {
     public static final int wordDetectionPauseGap = 500; // ignored
 
     public Strain(SensorReading inputPins) {
-        pins = inputPins;
+       // pins = inputPins;
 
         calibrateSensors();
 
@@ -60,7 +60,7 @@ public class Strain {
 
     static Character getCharacter(SensorReading reading) {
         // get closest sensor reading and corresponding character
-        SensorReading closestReading;
+        SensorReading closestReading=null;
         float minDistance = Float.MAX_VALUE;
 
         for (SensorReading read : mapping.keySet()) {
@@ -72,7 +72,7 @@ public class Strain {
             }
         }
 
-        if (closestReading) return mapping.get(closestReading);
+        if (closestReading!=null) return mapping.get(closestReading);
         return '\0';
     }
 
@@ -112,4 +112,10 @@ public class Strain {
 
         wait(pollWaitTime);
     }
+
+    // function for pollWaitTime above
+    public void wait(int time){
+
+    }
+
 }
