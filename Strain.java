@@ -72,7 +72,7 @@ public class Strain {
             }
         }
 
-        if (closestReading!=null) return mapping.get(closestReading);
+        if (closestReading != null) return mapping.get(closestReading);
         return '\0';
     }
 
@@ -105,7 +105,7 @@ public class Strain {
             history.removeFirst();
 
         // if the change in the last ten readings is minimal
-        if (history.size() >= 10 && history.getFirst().getDistance(history.getLast()) 
+        if (history.size() >= maxQueueLength && history.getFirst().getDistance(history.getLast()) 
             < letterDetectionDistanceCutoff) {
                 detected = getCharacter(calibrated);
         }
