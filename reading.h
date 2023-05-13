@@ -12,8 +12,11 @@ struct SensorReading {
 
 public:
   void copy(const SensorReading &other);
+  void operator-=(const SensorReading &other);
 };
 
 ReadingType readingDist(const SensorReading &a, const SensorReading &b);
+void replaceByLargest(SensorReading &to, const SensorReading &from);
+void replaceBySmallest(SensorReading &to, const SensorReading &from);
 
 #endif

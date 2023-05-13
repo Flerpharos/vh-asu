@@ -18,8 +18,8 @@ char detected;
 bool calibrating = false; // state (are we currently calibrating)
 long calibratingTime = 0; // time spent calibrating
 
-SensorReading min;
-SensorReading max;
+SensorReading min{};
+SensorReading max{};
 SensorReading dist; // max - min (calculate after calibrations)
 
 SensorReading *getReading() {
@@ -82,11 +82,20 @@ void loop() {
                      // uncalibrated, iirc
 
     if (calibratingTime == 0) {
-      max.copy()
+      max.copy(reading);
+      min.copy(reading);
+    } else {
+      replaceByLargest(max, reading);
+      replaceBySmallest(min, reading);
     }
 
     if (calibratingTime > MAX_CALIBRATING_TIME) { // finished calibrating
       calibrating = false;
+
+      dist = *new SensorReading{};
+      dist.copy(max);
+      dist -= min;
+
       return;
     }
 

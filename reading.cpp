@@ -20,3 +20,26 @@ void SensorReading::copy(const SensorReading &other) {
   this->index = other.index;
   this->thumb = other.thumb;
 }
+
+void SensorReading::operator-=(const SensorReading &other) {
+  this->index -= other.index;
+  this->pinky -= other.pinky;
+  this->middle -= other.middle;
+  this->ring -= other.ring;
+  this->thumb -= other.thumb;
+}
+
+void replaceByLargest(SensorReading &to, const SensorReading &from) {
+  to.index = from.index > to.index ? from.index : to.index;
+  to.middle = from.middle > to.middle ? from.middle : to.middle;
+  to.ring = from.ring > to.ring ? from.ring : to.ring;
+  to.pinky = from.pinky > to.pinky ? from.pinky : to.pinky;
+  to.thumb = from.thumb > to.thumb ? from.thumb : to.thumb;
+}
+void replaceBySmallest(SensorReading &to, const SensorReading &from) {
+  to.index = from.index < to.index ? from.index : to.index;
+  to.middle = from.middle < to.middle ? from.middle : to.middle;
+  to.ring = from.ring < to.ring ? from.ring : to.ring;
+  to.pinky = from.pinky < to.pinky ? from.pinky : to.pinky;
+  to.thumb = from.thumb < to.thumb ? from.thumb : to.thumb;
+}
