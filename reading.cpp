@@ -12,3 +12,11 @@ ReadingType readingDist(const SensorReading &a, const SensorReading &b) {
   return (ReadingType)std::sqrt(pinky * pinky + ring * ring + middle * middle +
                                 index * index + thumb * thumb);
 }
+
+void SensorReading::copy(const SensorReading &other) {
+  this->pinky = other.pinky;
+  this->ring = other.ring;
+  this->middle = other.middle;
+  this->index = other.index;
+  this->thumb = other.thumb;
+}
